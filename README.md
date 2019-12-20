@@ -152,7 +152,7 @@ Files in this repository:
 * ```bert``` folder: code of Chinese BERT, BERT-wwm, and BERT-wwm-ext baselines. The code is derived from [this repository](https://github.com/nlpdata/mrc_bert_baseline). Below are detailed instructions on fine-tuning Chinese BERT on C<sup>3</sup>. 
   1. Download and unzip the pre-trained Chinese BERT from [here](https://github.com/google-research/bert), and set up the environment variable for BERT by ```export BERT_BASE_DIR=/PATH/TO/BERT/DIR```. 
   2. Copy the dataset folder ```data``` to ```bert/```.
-  3. In ```bert```, ```execute python convert_tf_checkpoint_to_pytorch.py --tf_checkpoint_path=$BERT_BASE_DIR/bert_model.ckpt --bert_config_file=$BERT_BASE_DIR/bert_config.json --pytorch_dump_path=$BERT_BASE_DIR/pytorch_model.bin```.
+  3. In ```bert```, execute ```python convert_tf_checkpoint_to_pytorch.py --tf_checkpoint_path=$BERT_BASE_DIR/bert_model.ckpt --bert_config_file=$BERT_BASE_DIR/bert_config.json --pytorch_dump_path=$BERT_BASE_DIR/pytorch_model.bin```.
   4. Execute ```python run_classifier.py --task_name c3 --do_train --do_eval --data_dir . --vocab_file $BERT_BASE_DIR/vocab.txt --bert_config_file $BERT_BASE_DIR/bert_config.json --init_checkpoint $BERT_BASE_DIR/pytorch_model.bin --max_seq_length 512 --train_batch_size 24 --learning_rate 2e-5 --num_train_epochs 8.0 --output_dir c3_finetuned --gradient_accumulation_steps 3```.
   5. The resulting fine-tuned model, predictions, and evaluation results are stored in ```bert/c3_finetuned```.
 
